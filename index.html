@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis SSW Peternakan - Bagian 4 — Soal 157–210</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --primary-border: #bfdbfe;
+            --bg-page: #f0f6ff;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #dbeafe;
+            --success-bg: #dcfce7;
+            --success-border: #22c55e;
+            --success-text: #15803d;
+            --danger-bg: #fee2e2;
+            --danger-border: #ef4444;
+            --danger-text: #b91c1c;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            margin: 0;
+            padding: 16px 12px 40px;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px;
+        }
+
+        /* Header Card */
+        .header-card {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            color: #ffffff;
+            padding: 24px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.25);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .part-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .header-card h1 {
+            margin: 0 0 6px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .header-card p {
+            margin: 0 0 16px;
+            font-size: 13.5px;
+            opacity: 0.9;
+        }
+
+        .name-box {
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: #ffffff;
+            color: var(--text-main);
+            font-size: 14.5px;
+            font-weight: 500;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .name-input:focus {
+            border-color: #93c5fd;
+            box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.35);
+        }
+
+        /* Sticky Progress Bar */
+        .sticky-bar {
+            position: sticky;
+            top: 8px;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--primary-border);
+            border-radius: 14px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 9px;
+            background: #e2e8f0;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #2563eb, #38bdf8);
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        /* Result Summary Banner (Hanya muncul setelah Submit) */
+        .result-card {
+            display: none;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 22px 18px;
+            margin-bottom: 18px;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+        }
+
+        .result-card.visible {
+            display: block;
+        }
+
+        .result-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 0 0 4px;
+        }
+
+        .result-subtitle {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin: 0 0 16px;
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .score-box {
+            background: var(--primary-light);
+            border: 1px solid var(--primary-border);
+            border-radius: 12px;
+            padding: 12px 8px;
+        }
+
+        .score-box.correct-box {
+            background: var(--success-bg);
+            border-color: var(--success-border);
+        }
+
+        .score-box.wrong-box {
+            background: var(--danger-bg);
+            border-color: var(--danger-border);
+        }
+
+        .score-num {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .score-lbl {
+            font-size: 11.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 4px;
+            color: var(--text-muted);
+        }
+
+        .sync-status {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 11px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-filter {
+            background: #f59e0b;
+            color: #ffffff;
+        }
+
+        .btn-filter:hover {
+            background: #d97706;
+        }
+
+        .btn-filter.active {
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        .btn-reset {
+            background: #ffffff;
+            color: var(--danger-text);
+            border: 1.5px solid #fecaca;
+        }
+
+        .btn-reset:hover {
+            background: #fef2f2;
+        }
+
+        .btn-submit-main {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px -4px rgba(37, 99, 235, 0.35);
+            margin-top: 8px;
+        }
+
+        .btn-submit-main:hover {
+            filter: brightness(1.05);
+        }
+
+        /* Question Card */
+        .q-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+            transition: border-color 0.2s;
+        }
+
+        .q-card.hidden-by-filter {
+            display: none;
+        }
+
+        .q-card.card-correct {
+            border-color: var(--success-border);
+        }
+
+        .q-card.card-wrong {
+            border-color: var(--danger-border);
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 8px;
+        }
+
+        .q-num {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .q-status-badge {
+            display: none;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+
+        .q-status-badge.badge-correct {
+            display: inline-block;
+            background: var(--success-bg);
+            color: var(--success-text);
+        }
+
+        .q-status-badge.badge-wrong {
+            display: inline-block;
+            background: var(--danger-bg);
+            color: var(--danger-text);
+        }
+
+        .q-text {
+            font-size: 15.5px;
+            font-weight: 600;
+            line-height: 1.55;
+            margin: 0 0 14px;
+            white-space: pre-line;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            background: #ffffff;
+            cursor: pointer;
+            font-size: 14.5px;
+            line-height: 1.45;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .option-item:hover:not(.locked) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .option-item.locked {
+            cursor: default;
+        }
+
+        /* Highlight Benar/Salah (Hanya diterapkan setelah Submit) */
+        .option-item.reveal-correct {
+            background: var(--success-bg) !important;
+            border-color: var(--success-border) !important;
+            color: var(--success-text) !important;
+            font-weight: 700;
+        }
+
+        .option-item.reveal-wrong {
+            background: var(--danger-bg) !important;
+            border-color: var(--danger-border) !important;
+            color: var(--danger-text) !important;
+            font-weight: 600;
+        }
+
+        .radio-dot {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border-radius: 50%;
+            border: 2px solid #94a3b8;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+        }
+
+        .option-item.selected .radio-dot {
+            border-color: var(--primary);
+            background: var(--primary);
+            box-shadow: inset 0 0 0 3px #ffffff;
+        }
+
+        .option-item.reveal-correct .radio-dot {
+            border-color: var(--success-border);
+            background: var(--success-border);
+            box-shadow: inset 0 0 0 3px #ffffff;
+        }
+
+        .option-item.reveal-wrong .radio-dot {
+            border-color: var(--danger-border);
+            background: var(--danger-border);
+            box-shadow: inset 0 0 0 3px #ffffff;
+        }
+
+        /* Pembahasan / Kunci Jawaban (Tersembunyi sebelum Submit) */
+        .explanation-box {
+            display: none;
+            margin-top: 12px;
+            padding: 11px 14px;
+            border-radius: 9px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            color: var(--text-main);
+        }
+
+        .explanation-box.visible {
+            display: block;
+        }
+
+        .footer-controls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .empty-filter-msg {
+            display: none;
+            text-align: center;
+            background: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-border);
+            padding: 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .header-card h1 {
+                font-size: 19px;
+            }
+            .q-card {
+                padding: 15px 13px;
+            }
+            .option-item {
+                padding: 11px 12px;
+                font-size: 14px;
+            }
+            .score-num {
+                font-size: 19px;
+            }
+            .action-row .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header-card">
+        <div class="part-badge" id="part-badge">PART_4_SOAL_157_210</div>
+        <h1>Kuis Mandiri SSW Peternakan</h1>
+        <p id="part-subtitle">Bagian 4 — Soal 157–210</p>
+        <div class="name-box">
+            <input type="text" id="participant-name" class="name-input" placeholder="Ketik Nama Lengkap Peserta..." autocomplete="name">
+        </div>
+    </div>
+
+    <!-- Sticky Progress -->
+    <div class="sticky-bar">
+        <div class="progress-top">
+            <span>Terjawab: <strong id="answered-text">0 / 0</strong> soal</span>
+            <span id="progress-percent">0%</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- Hasil Akhir (Muncul HANYA setelah klik Submit) -->
+    <div class="result-card" id="result-card">
+        <h2 class="result-title">Hasil Kuis — <span id="res-name">Peserta</span></h2>
+        <p class="result-subtitle" id="res-part">Bagian 4 — Soal 157–210</p>
+
+        <div class="score-grid">
+            <div class="score-box">
+                <div class="score-num" style="color: var(--primary);" id="res-score">0</div>
+                <div class="score-lbl">Nilai Akhir</div>
+            </div>
+            <div class="score-box correct-box">
+                <div class="score-num" style="color: var(--success-text);" id="res-correct">0</div>
+                <div class="score-lbl">Benar</div>
+            </div>
+            <div class="score-box wrong-box">
+                <div class="score-num" style="color: var(--danger-text);" id="res-wrong">0</div>
+                <div class="score-lbl">Salah / Kosong</div>
+            </div>
+        </div>
+
+        <div class="sync-status" id="sync-status"></div>
+
+        <div class="action-row">
+            <button type="button" class="btn btn-filter" id="btn-filter-wrong" onclick="toggleWrongFilter()">
+                🔍 Lihat Hanya Salah (<span id="wrong-count-label">0</span>)
+            </button>
+            <button type="button" class="btn btn-reset" onclick="resetQuiz()">
+                🔄 Ulangi Kuis
+            </button>
+        </div>
+    </div>
+
+    <div class="empty-filter-msg" id="empty-filter-msg">
+        🎉 Luar biasa! Tidak ada jawaban yang salah pada bagian ini.
+    </div>
+
+    <!-- Daftar Soal -->
+    <div id="quiz-list"></div>
+
+    <!-- Tombol Submit & Reset Bawah -->
+    <div class="footer-controls">
+        <button type="button" class="btn btn-submit-main" id="btn-submit" onclick="submitQuiz()">
+            ✅ Submit & Lihat Hasil
+        </button>
+        <button type="button" class="btn btn-reset" style="width: 100%;" onclick="resetQuiz()">
+            🔄 Ulangi Kuis & Hapus Progres
+        </button>
+    </div>
+</div>
+
+<script>
+// ============================================================================
+// 1. KONFIGURASI BAGIAN & INTEGRASI GOOGLE APPS SCRIPT
+// ============================================================================
+const PART_ID = "PART_4_SOAL_157_210";
+const PART_LABEL = "Bagian 4 — Soal 157–210";
+const PACKET_NAME = "Latihan 157-210";
+
+// Konfigurasi Google Apps Script Web App (aktif jika ENABLE_SHEETS_SYNC = true)
+const ENABLE_SHEETS_SYNC = true;
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzX9TcCefgE_OzpmFJViyDCIq2S-Aa9TM7UtqVR_UWHgRM61npLS-u0WIl0sevuqWjyGQ/exec";
+
+// Kunci localStorage unik per PART_ID agar progres tiap bagian tidak bertabrakan
+const STORAGE_KEY_ANSWERS   = `kuis_ssw_${PART_ID}_answers`;
+const STORAGE_KEY_NAME      = `kuis_ssw_${PART_ID}_name`;
+const STORAGE_KEY_SUBMITTED = `kuis_ssw_${PART_ID}_submitted`;
+
+// ============================================================================
+// 2. DATA SOAL (MUDAH DIEDIT / DITAMBAH)
+// Format setiap objek soal:
+// {
+//   id: 1,
+//   question: "Teks pertanyaan...",
+//   options: ["a. Pilihan A", "b. Pilihan B", "c. Pilihan C"],
+//   answer: "a", // huruf kunci jawaban (huruf kecil: "a", "b", "c", atau "d")
+//   explanation: "Penjelasan singkat mengenai jawaban yang benar."
+// }
+// ============================================================================
+const QUESTIONS = [
+  {
+    "id": 157,
+    "question": "Yang sering dipergunakan sebagai pakan konsentrat adalah: Pakan ternak campuran, jagung, ampas kedelai, ampas hijauan, dedak, byproduct manufacture food, beet pulp, dan sebagainya.",
+    "options": [
+      "A.Salah",
+      "B.Benar"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B.Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 158,
+    "question": "Bahan pakan kaya gizi yang dipadatkan dan diformulasikan dari biji-bijian dinamakan:",
+    "options": [
+      "A. Konsentrat",
+      "B. Silase"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A. Konsentrat\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 159,
+    "question": "Pengerjaan Silase rumput yang dipadatkan membundar menggunakan mesin pembalut plastik dilapangan dinamakan:",
+    "options": [
+      "A. Stack Silo",
+      "B. Roll Bale"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B. Roll Bale\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 160,
+    "question": "Kotoran dan urin sapi perah dibedakan Menjadi 3 Materi apa saja?",
+    "options": [
+      "A. Materi padat, slurry, dan materi cair.",
+      "B. Materi padat, slurry, dan materi Gas.."
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A. Materi padat, slurry, dan materi cair.\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 161,
+    "question": "Proses memasukkan semen ke dalam saluran reproduksi sapi betina menggunakan alat syringe / gun dinamakan:",
+    "options": [
+      "A.Inseminasi Alami",
+      "B.inseminasi Buatan"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B.inseminasi Buatan\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 162,
+    "question": "Saat membantu kelahiran, harus hati-hati agar tidak terjadi luka saluran lahir atau infeksi bakteri pada induk sapi.",
+    "options": [
+      "A. Benar",
+      "B. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 163,
+    "question": "Induk sapi akan menjilati mengeringkan permukaan pedet yang dilahirkan, namun memindahkan pedet ke atas alas kandang yang kering adalah penting.",
+    "options": [
+      "A.Salah",
+      "B.Benar"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B.Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 164,
+    "question": "Kegiatan memerah sedikit aliran susu awal ke wadah khusus sebelum pemasangan teat cup dinamakan:",
+    "options": [
+      "A.Pembersihan ambing.",
+      "B.Pra pemerahan"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B.Pra pemerahan\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 165,
+    "question": "Apa tujuan Dipping?",
+    "options": [
+      "A. Tujuan dipping adalah membunuh kuman pada ambing dan menjaga permukaan Ambing.",
+      "B. Tujuan dipping adalah membunuh kuman pada Strip cup dengan Cairan desinfektan."
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A. Tujuan dipping adalah membunuh kuman pada ambing dan menjaga permukaan Ambing.\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 166,
+    "question": "Apa yang dimaksud Dipping?",
+    "options": [
+      "A. Mencelupkan ke cairan kimia",
+      "B. mencelupkan kedalam air"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A. Mencelupkan ke cairan kimia\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 167,
+    "question": "Cangkir/wadah bercak hitam untuk memeriksa gumpalan susu awal dinamakan:",
+    "options": [
+      "A.Strip cup",
+      "B.Dipping Solution"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A.Strip cup\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 168,
+    "question": "Apa tujuan pengelapan Ambing?",
+    "options": [
+      "A. Tujuan pengelapan adalah memberikan rangsangan perah susu dan sterilisasi permukaan Ambing.",
+      "B. Tujuan pengelapan adalah Membersihkan permukaan ambing dari kotoran ternak."
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A. Tujuan pengelapan adalah memberikan rangsangan perah susu dan sterilisasi permukaan Ambing.\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 169,
+    "question": "Babi berwarna putih berukuran besar dengan telinga berdiri tegak tegak ke atas:",
+    "options": [
+      "A. Landrace",
+      "B. Large Yorkshire jantan",
+      "C. Middle Yorkshire"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B. Large Yorkshire jantan\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 170,
+    "question": "Masa kehamilan Babi adalah?",
+    "options": [
+      "A. 110 hari",
+      "B. 114 hari",
+      "C. 118 hari"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B. 114 hari\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 171,
+    "question": "Apa yang dimaksud dengan 'HAHABUTA'?",
+    "options": [
+      "A. Babi indukan jantan",
+      "B. Babi indukan Betina"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B. Babi indukan Betina\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 172,
+    "question": "Pemberian pakan untuk pemeliharaan Babi bakalan adalah: pemberian pakan dengan dibatasi.",
+    "options": [
+      "A. Benar",
+      "B. Salah"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B. Salah\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 173,
+    "question": "Babi adalah omnivora yang memakan beragam pakan/Pemakan segalanya.",
+    "options": [
+      "A. Benar",
+      "B. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 174,
+    "question": "Aktivitas anak babi menyusui air susu dari ambing induknya:",
+    "options": [
+      "A. Anak Babi sedang makan",
+      "B. Anak Babi sedang menyusu."
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B. Anak Babi sedang menyusu.\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 175,
+    "question": "Gambar ayam berbadan lebar berdada tebal khas ras pedaging broiler unggulan:",
+    "options": [
+      "A. White Plymouth Rock",
+      "B. White Cornish",
+      "C. Single Comb White Leghorn"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B. White Cornish\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 176,
+    "question": "Telur ayam akan menetas pada hari ke ?",
+    "options": [
+      "A. 21",
+      "B. 27",
+      "C. 30"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A. 21\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 177,
+    "question": "Pakan ternak campuran untuk Broiler yang mengandung sumber energi adalah?",
+    "options": [
+      "A.Sereal jagung",
+      "B. kedelai",
+      "C. tepung ikan"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A.Sereal jagung\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 178,
+    "question": "Sistem memelihara ayam di dalam sangkar kawat bertingkat dipasang sejajar dinamakan:",
+    "options": [
+      "A.Tipe pemeliharaan ayam kandang (cage).",
+      "B.Tipe pemeliharaan ayam Umbaran."
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"A.Tipe pemeliharaan ayam kandang (cage).\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 179,
+    "question": "Sistem pemeliharaan ayam dilepas melantai di atas litter/alas sekam dinamakan:",
+    "options": [
+      "A.Tipe pemeliharaan ayam kandang.",
+      "B.Tipe pemeliharaan ayam Umbaran."
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"B.Tipe pemeliharaan ayam Umbaran.\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 181,
+    "question": "Free barn adalah metode yang membiarkan sapi perah bergerak bebas tanpa ditambat di dalam pagar yang beratap di area luas",
+    "options": [
+      "a. Salah",
+      "b. Benar"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 182,
+    "question": "Lambung terbesar adalah lambung pertama, disebut dengan rumen...",
+    "options": [
+      "a. Salah",
+      "b. Benar"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 183,
+    "question": "Yang sering dipergunakan sebagai pakan konsentrat adalah",
+    "options": [
+      "a. Jagung, ampas kedelai",
+      "b. Ampas hijauan",
+      "c. A & B benar"
+    ],
+    "answer": "c",
+    "explanation": "Jawaban yang tepat adalah \"c. A & B benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 184,
+    "question": "Silase adalah pakan ternak hijauan terfermentasi simpanan kelembaban tinggi.",
+    "options": [
+      "a. Pakan ternak rumput",
+      "b. Pakan terfermentasi",
+      "c. Gabah"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Pakan terfermentasi\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 185,
+    "question": "Metode pemberian pakan kasar dan pakan konsentrat sendiri-sendiri disebut dengan separate feeding",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 186,
+    "question": "Penyakit yang terjadi karena berkembang biaknya bakteri patogen di dalam ambing sapi perah adalah",
+    "options": [
+      "a. Mastitis",
+      "b. Martitis"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Mastitis\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 187,
+    "question": "Bobot pedet saat dilahirkan oleh sapi perah adalah sekitar....",
+    "options": [
+      "a. 40kg",
+      "b. 42kg",
+      "c. 45kg"
+    ],
+    "answer": "c",
+    "explanation": "Jawaban yang tepat adalah \"c. 45kg\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 188,
+    "question": "Setelah melahirkan pedet, plasenta (afterbirth) akan disekresikan dalam kurun waktu...",
+    "options": [
+      "a. 6 jam",
+      "b. 7 jam",
+      "c. 8 jam"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. 6 jam\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 189,
+    "question": "Setelah dilahirkan sebaiknya berikan kolostrum pada pedet setidaknya selama",
+    "options": [
+      "a. 2 hari",
+      "b. 3 hari",
+      "c. 4 hari"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. 3 hari\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 190,
+    "question": "Pada fase pemeliharaan sapi perah, terdapat 2 target utama pengembangan:",
+    "options": [
+      "a. Mengembangkan rumen dengan pakan kasar baik",
+      "b. Mengembangkan otot dan tulang melalui pergerakan",
+      "c. Semua benar"
+    ],
+    "answer": "c",
+    "explanation": "Jawaban yang tepat adalah \"c. Semua benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 191,
+    "question": "Bobot pedet saat dilahirkan oleh induk sapi pedaging adalah sekitar",
+    "options": [
+      "a. 30kg",
+      "b. 32kg",
+      "c. 34kg"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. 30kg\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 192,
+    "question": "Proses pedet menyusu langsung ke ambing induknya di padang rumput dinamakan:",
+    "options": [
+      "a. Sesaat Setelah Lahir",
+      "b. Penyusuan Alami"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Penyusuan Alami\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 193,
+    "question": "Bahan pakan unggas yang digunakan terutama sebagai sumber protein adalah",
+    "options": [
+      "a. Jagung / Tepung kedelai",
+      "b. Ampas nabati",
+      "c. Dedak"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Jagung / Tepung kedelai\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 194,
+    "question": "Bentuk ukuran fisik pakan ternak butiran kasar yang tepat untuk ayam dewasa:",
+    "options": [
+      "a. Bentuk Halus (A)",
+      "b. Bentuk Crumble (B)",
+      "c. Bentuk Pellet / Mash Kasar (C)"
+    ],
+    "answer": "c",
+    "explanation": "Jawaban yang tepat adalah \"c. Bentuk Pellet / Mash Kasar (C)\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 195,
+    "question": "Sifat fisik warna kuning telur dari ayam yang diberi pakan beras (warna kuning pudar/pucat):",
+    "options": [
+      "a. Warna Kuning Cerah (A)",
+      "b. Warna Kuning Pucat (B)"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Warna Kuning Pucat (B)\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 196,
+    "question": "Rata-rata volume susu per tahun yang dihasilkan sapi perah di Jepang adalah sekitar 5.000 kg.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Salah\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 197,
+    "question": "Pada manajemen penggemukan varietas sapi hitam Jepang, sapi usia sekitar 10 bulan dibeli di pasaran, dan digemukkan hingga sekitar 30 bulan.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 198,
+    "question": "Seluruh sapi pedaging yang dipelihara di Jepang adalah varietas sapi hitam Jepang.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Salah\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 199,
+    "question": "Setelah melahirkan, induk sapi akan mengulang estrus rata-rata setiap 21 hari.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 200,
+    "question": "Bila menjadi panas, maka jumlah napas sapi perah akan meningkat.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 201,
+    "question": "Wadah cangkir pengukur kecil untuk menampung dan memeriksa pancaran susu perah awal dinamakan:",
+    "options": [
+      "a. Water Cup",
+      "b. Strip Cup",
+      "c. Teat Cup"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Strip Cup\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 203,
+    "question": "Pada sapi pedaging, bulu ekor botak rontok karena terus bergesek merupakan gejala kotoran menempel akibat:",
+    "options": [
+      "a. Batuk",
+      "b. Diare",
+      "c. Kencing Batu"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Diare\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 204,
+    "question": "Jumlah anak yang dilahirkan induk babi Jepang dalam sekali melahirkan rata-rata 5 ekor.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Salah\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 205,
+    "question": "Karena penyakit pada peternakan babi di Jepang itu sedikit, maka tidak diperlukan penyuntikan vaksin.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Salah\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 206,
+    "question": "Induk babi Jepang dapat hamil dan melahirkan sebanyak 4~5 kali selama 2 tahun.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 207,
+    "question": "Anak babi mendapatkan daya tahan terhadap berbagai penyakit dari kolostrum.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Benar\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 208,
+    "question": "Pengumpanan babi bakalan diberikan dengan volume yang sudah tetap 1 kali 1 hari.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "b",
+    "explanation": "Jawaban yang tepat adalah \"b. Salah\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 209,
+    "question": "Pola bentuk fasilitas bangunan kandang ayam di Jepang terdiri dari tipe berikut, kecuali:",
+    "options": [
+      "a. Kandang ayam semi tertutup",
+      "b. Kandang ayam tipe terbuka",
+      "c. Kandang ayam tanpa jendela (windowless)"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Kandang ayam semi tertutup\" sesuai materi SSW Peternakan Jepang."
+  },
+  {
+    "id": 210,
+    "question": "Penyakit burung termasuk unggas akibat penularan influenza virus (virus AI) pada ayam disebut juga dengan flu burung.",
+    "options": [
+      "a. Benar",
+      "b. Salah"
+    ],
+    "answer": "a",
+    "explanation": "Jawaban yang tepat adalah \"a. Benar\" sesuai materi SSW Peternakan Jepang."
+  }
+];
+
+// ============================================================================
+// 3. STATE & LOGIKA APLIKASI
+// ============================================================================
+let userAnswers = {};
+let isSubmitted = false;
+let filterWrongOnly = false;
+
+function loadFromStorage() {
+    try {
+        const savedName = localStorage.getItem(STORAGE_KEY_NAME);
+        if (savedName) {
+            document.getElementById("participant-name").value = savedName;
+        }
+        const savedAnswers = localStorage.getItem(STORAGE_KEY_ANSWERS);
+        if (savedAnswers) {
+            userAnswers = JSON.parse(savedAnswers) || {};
+        }
+        const savedSubmitted = localStorage.getItem(STORAGE_KEY_SUBMITTED);
+        isSubmitted = savedSubmitted === "true";
+    } catch (e) {
+        console.warn("Gagal membaca localStorage:", e);
+    }
+}
+
+function saveToStorage() {
+    try {
+        localStorage.setItem(STORAGE_KEY_ANSWERS, JSON.stringify(userAnswers));
+        localStorage.setItem(STORAGE_KEY_SUBMITTED, String(isSubmitted));
+    } catch (e) {
+        console.warn("Gagal menyimpan ke localStorage:", e);
+    }
+}
+
+document.getElementById("participant-name").addEventListener("input", function (e) {
+    try {
+        localStorage.setItem(STORAGE_KEY_NAME, e.target.value);
+    } catch (err) {}
+});
+
+function getOptionKey(optionText) {
+    return optionText.trim().charAt(0).toLowerCase();
+}
+
+function updateProgressUI() {
+    const total = QUESTIONS.length;
+    let answered = 0;
+    QUESTIONS.forEach((q, idx) => {
+        if (userAnswers[idx] !== undefined && userAnswers[idx] !== null) {
+            answered++;
+        }
+    });
+    const pct = total > 0 ? Math.round((answered / total) * 100) : 0;
+    document.getElementById("answered-text").textContent = `${answered} / ${total}`;
+    document.getElementById("progress-percent").textContent = `${pct}%`;
+    document.getElementById("progress-fill").style.width = `${pct}%`;
+}
+
+function selectOption(qIndex, optKey) {
+    // Jika sudah disubmit, kunci pilihan agar tidak bisa diubah sebelum Ulangi Kuis
+    if (isSubmitted) return;
+
+    userAnswers[qIndex] = optKey;
+    saveToStorage();
+    renderQuestions();
+    updateProgressUI();
+}
+
+function renderQuestions() {
+    const listEl = document.getElementById("quiz-list");
+    listEl.innerHTML = "";
+
+    let visibleCount = 0;
+
+    QUESTIONS.forEach((q, idx) => {
+        const selectedKey = userAnswers[idx] || null;
+        const correctKey = q.answer.trim().toLowerCase();
+        const isCorrect = selectedKey === correctKey;
+
+        // Filter hanya salah setelah submit
+        if (isSubmitted && filterWrongOnly && isCorrect) {
+            return;
+        }
+        visibleCount++;
+
+        const card = document.createElement("div");
+        card.className = "q-card";
+        if (isSubmitted) {
+            card.classList.add(isCorrect ? "card-correct" : "card-wrong");
+        }
+
+        // Header nomor & status (status hanya muncul setelah Submit)
+        const header = document.createElement("div");
+        header.className = "q-header";
+
+        const numBadge = document.createElement("span");
+        numBadge.className = "q-num";
+        numBadge.textContent = `Soal ${idx + 1} (No. ${q.id})`;
+        header.appendChild(numBadge);
+
+        if (isSubmitted) {
+            const statusBadge = document.createElement("span");
+            statusBadge.className = `q-status-badge ${isCorrect ? "badge-correct" : "badge-wrong"}`;
+            statusBadge.textContent = isCorrect ? "✓ Benar" : (selectedKey ? "✕ Salah" : "• Tidak Dijawab");
+            header.appendChild(statusBadge);
+        }
+
+        card.appendChild(header);
+
+        // Teks Pertanyaan
+        const qText = document.createElement("div");
+        qText.className = "q-text";
+        qText.textContent = q.question;
+        card.appendChild(qText);
+
+        // Pilihan Jawaban
+        const optList = document.createElement("div");
+        optList.className = "options-list";
+
+        q.options.forEach((optStr) => {
+            const optKey = getOptionKey(optStr);
+            const optItem = document.createElement("div");
+            optItem.className = "option-item";
+
+            if (!isSubmitted) {
+                if (selectedKey === optKey) {
+                    optItem.classList.add("selected");
+                }
+                optItem.onclick = () => selectOption(idx, optKey);
+            } else {
+                // Setelah Submit: tampilkan highlight hijau/merah
+                optItem.classList.add("locked");
+                if (optKey === correctKey) {
+                    optItem.classList.add("reveal-correct");
+                } else if (selectedKey === optKey && optKey !== correctKey) {
+                    optItem.classList.add("reveal-wrong");
+                }
+            }
+
+            const dot = document.createElement("span");
+            dot.className = "radio-dot";
+
+            const label = document.createElement("span");
+            label.textContent = optStr;
+
+            optItem.appendChild(dot);
+            optItem.appendChild(label);
+            optList.appendChild(optItem);
+        });
+
+        card.appendChild(optList);
+
+        // Kunci jawaban & pembahasan WAJIB disembunyikan sebelum Submit
+        if (isSubmitted) {
+            const correctOptionObj = q.options.find(o => getOptionKey(o) === correctKey) || q.answer.toUpperCase();
+            const expBox = document.createElement("div");
+            expBox.className = "explanation-box visible";
+            expBox.innerHTML = `<strong>Kunci Jawaban:</strong> ${correctOptionObj}<br><strong>Pembahasan:</strong> ${q.explanation}`;
+            card.appendChild(expBox);
+        }
+
+        listEl.appendChild(card);
+    });
+
+    const emptyMsg = document.getElementById("empty-filter-msg");
+    if (isSubmitted && filterWrongOnly && visibleCount === 0) {
+        emptyMsg.style.display = "block";
+    } else {
+        emptyMsg.style.display = "none";
+    }
+}
+
+function showScoreSummary(sendToSheets = false) {
+    const nameVal = document.getElementById("participant-name").value.trim();
+    const total = QUESTIONS.length;
+    let correctCount = 0;
+
+    QUESTIONS.forEach((q, idx) => {
+        const selectedKey = userAnswers[idx] || null;
+        if (selectedKey === q.answer.trim().toLowerCase()) {
+            correctCount++;
+        }
+    });
+
+    const wrongCount = total - correctCount;
+    const scorePct = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+    document.getElementById("res-name").textContent = nameVal || "Peserta";
+    document.getElementById("res-score").textContent = `${scorePct}%`;
+    document.getElementById("res-correct").textContent = correctCount;
+    document.getElementById("res-wrong").textContent = wrongCount;
+    document.getElementById("wrong-count-label").textContent = wrongCount;
+
+    const resultCard = document.getElementById("result-card");
+    resultCard.classList.add("visible");
+
+    const submitBtn = document.getElementById("btn-submit");
+    submitBtn.style.display = "none";
+
+    const syncEl = document.getElementById("sync-status");
+    if (sendToSheets && ENABLE_SHEETS_SYNC && GOOGLE_SCRIPT_URL) {
+        syncEl.textContent = "⏳ Mengirim skor ke Google Sheets...";
+        const payload = {
+            nama: nameVal,
+            paket: PACKET_NAME,
+            part_id: PART_ID,
+            benar: correctCount,
+            salah: wrongCount,
+            total: total,
+            persentase: scorePct
+        };
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            syncEl.textContent = "✅ Skor berhasil dikirim ke Google Sheets.";
+        })
+        .catch(() => {
+            syncEl.textContent = "⚠️ Skor tersimpan di perangkat (gagal terhubung ke Google Sheets).";
+        });
+    } else if (ENABLE_SHEETS_SYNC && GOOGLE_SCRIPT_URL) {
+        syncEl.textContent = "✅ Kuis sudah disubmit. Tekan 'Ulangi Kuis' untuk mengerjakan ulang.";
+    }
+}
+
+function submitQuiz() {
+    const nameInput = document.getElementById("participant-name");
+    const nameVal = nameInput.value.trim();
+
+    if (!nameVal) {
+        alert("⚠️ Harap masukkan Nama Lengkap Peserta terlebih dahulu sebelum menekan Submit!");
+        nameInput.focus();
+        nameInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+    }
+
+    const total = QUESTIONS.length;
+    let answered = 0;
+    QUESTIONS.forEach((_, idx) => {
+        if (userAnswers[idx] !== undefined && userAnswers[idx] !== null) {
+            answered++;
+        }
+    });
+
+    if (answered < total) {
+        const yakin = confirm(`Anda baru menjawab ${answered} dari ${total} soal. Tetap Submit dan lihat hasil sekarang?`);
+        if (!yakin) return;
+    }
+
+    isSubmitted = true;
+    filterWrongOnly = false;
+    saveToStorage();
+    renderQuestions();
+    showScoreSummary(true);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function toggleWrongFilter() {
+    if (!isSubmitted) return;
+    filterWrongOnly = !filterWrongOnly;
+    const btn = document.getElementById("btn-filter-wrong");
+    const wrongCount = document.getElementById("wrong-count-label").textContent;
+
+    if (filterWrongOnly) {
+        btn.classList.add("active");
+        btn.innerHTML = `📋 Tampilkan Semua Soal`;
+    } else {
+        btn.classList.remove("active");
+        btn.innerHTML = `🔍 Lihat Hanya Salah (<span id="wrong-count-label">${wrongCount}</span>)`;
+    }
+    renderQuestions();
+}
+
+function resetQuiz() {
+    if (!confirm("Ulangi kuis dari awal? Semua jawaban pada bagian ini akan dihapus.")) {
+        return;
+    }
+    userAnswers = {};
+    isSubmitted = false;
+    filterWrongOnly = false;
+
+    try {
+        localStorage.removeItem(STORAGE_KEY_ANSWERS);
+        localStorage.removeItem(STORAGE_KEY_SUBMITTED);
+    } catch (e) {}
+
+    document.getElementById("result-card").classList.remove("visible");
+    document.getElementById("empty-filter-msg").style.display = "none";
+    document.getElementById("sync-status").textContent = "";
+
+    const btnFilter = document.getElementById("btn-filter-wrong");
+    btnFilter.classList.remove("active");
+    btnFilter.innerHTML = `🔍 Lihat Hanya Salah (<span id="wrong-count-label">0</span>)`;
+
+    const submitBtn = document.getElementById("btn-submit");
+    submitBtn.style.display = "inline-flex";
+
+    updateProgressUI();
+    renderQuestions();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Inisialisasi saat halaman dimuat
+loadFromStorage();
+updateProgressUI();
+renderQuestions();
+if (isSubmitted) {
+    showScoreSummary(false);
+}
+</script>
+</body>
+</html>
